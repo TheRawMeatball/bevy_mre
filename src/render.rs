@@ -9,7 +9,7 @@ use bevy::utils::HashMap;
 
 use std::path::Path;
 
-const TEXTURES_PATH: &str = "resources/textures";
+const TEXTURES_PATH: &str = "textures";
 
 pub(crate) struct RenderPlugin;
 
@@ -51,8 +51,6 @@ fn only_until_ready(value: Res<'_, Textures>) -> ShouldRun {
 
 fn render_setup(mut textures: ResMut<'_, Textures>, asset_server: Res<'_, AssetServer>) {
     let path: &Path = TEXTURES_PATH.as_ref();
-    assert!(path.exists());
-    assert!(path.is_dir());
     textures.handles = Some(asset_server.load_folder(path).unwrap());
 }
 
